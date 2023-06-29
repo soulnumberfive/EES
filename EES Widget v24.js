@@ -175,8 +175,8 @@ const imageElement = widget.addImage(image2);
 imageElement.imageSize = new Size(120, 120);
 imageElement.centerAlignImage();
 imageElement.cornerRadius = 7.5;
-//imageElement.borderWidth = 2; // Adjust the border width as needed
-//imageElement.borderColor = Color.black(); 
+imageElement.borderWidth = 2; // Adjust the border width as needed
+imageElement.borderColor = Color.black(); 
   
 // Add check date info
 widget.addSpacer(10);
