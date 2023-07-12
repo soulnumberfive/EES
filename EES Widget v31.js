@@ -1,7 +1,6 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
-// icon-color: cyan; icon-glyph: magic;
-// Create widget and set padding
+// icon-color: cyan; icon-glyph: // Create widget and set padding
 const widget = new ListWidget();
 widget.setPadding(10, 12.5, -10, 12.5);
 
@@ -15,7 +14,7 @@ const tintColor= new Color("#272727", 0.75); // black // controls background ima
 // Set hard-coded notification values
 const notifBmi  = 633;
 const notifGmr  = 0;
-const notifRel1 = "What Goes Around (Comes Around)";
+const notifRel1 = "Every Chance I Get (I Want You In The Flesh)";
 const notifRel2 = "Dropout Boogie";
 
 // Section 1: Background image and latest release
@@ -52,6 +51,12 @@ const titleParts = title.split(" / ");
 
 artist = titleParts[0];
 releaseTitle = titleParts[1];
+
+if (artist === "ダン・オーバック") {
+    artist = "Dan Auerbach";
+} else if (artist === "ヴァリアス・アーティスト") {
+    artist = "Various Artists";
+}
 
 const releaseDateStartTag = "Release date: ";
 const releaseDateEndTag = "<";
@@ -224,7 +229,7 @@ async function findMaxDateFromURL(url) {
     const maxDateObj = new Date(maxDate);
 
     // Calculate the time difference in days
-    const timeDiff = Math.round((currentDate - maxDateObj) / (1000 * 60 * 60 * 24) * 10) / 10;
+    const timeDiff = (currentDate - maxDateObj) / (1000 * 60 * 60 * 24);
 
     // Print the time difference
     console.log(`${timeDiff}`);
@@ -262,7 +267,7 @@ const timeDiff = await findMaxDateFromURL(initialURL);
   const lastUpdate2 = dates2.length > 0 ? Math.max(...dates2.map(d => d.getTime())) : null;
   
   const diffInMsStore = Date.now() - lastUpdate2;
-  const diffInDaysStore = Math.round(diffInMsStore / (1000 * 60 * 60 * 24) * 10) / 10;
+  const diffInDaysStore = diffInMsStore / (1000 * 60 * 60 * 24);
 
 console.log(diffInDaysStore)
 
@@ -282,7 +287,7 @@ const textWebRow2 = textWebStack.addText(`${minDiffInDays.toFixed(1)} days ago `
 textWebRow2.font = new Font("HelveticaNeue-Bold", 17);
 textWebRow2.textColor = new Color(row2Color);
 
-const textWebRow3 = textWebStack.addText (`Main: ${timeDiff} – Store: ${diffInDaysStore}`);
+const textWebRow3 = textWebStack.addText (`Main: ${timeDiff.toFixed(1)} – Store: ${diffInDaysStore.toFixed(1)}`);
 textWebRow3.font = new Font ("HelveticaNeue-Italic", 13);
 textWebRow3.textColor = new Color (row2Color);
 
